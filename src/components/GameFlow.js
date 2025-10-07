@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { 
   calculateHandValue, 
   isBlackjack, 
@@ -109,7 +108,7 @@ const GameFlow = ({ roomCode, playerId, isDealer }) => {
     
     if (currentHand && currentHand.cards) {
       const newCards = [...currentHand.cards, card];
-      const handValue = calculateHandValue(newCards);
+      calculateHandValue(newCards);
       
       let newStatus = 'active';
       if (isBust(newCards)) {

@@ -1,10 +1,8 @@
 import { 
   ref, 
   set, 
-  get, 
   onValue, 
   off, 
-  push, 
   update, 
   remove,
   serverTimestamp 
@@ -34,7 +32,6 @@ export const createRoom = async (dealerId, dealerName) => {
 };
 
 export const joinRoom = async (roomCode, playerId, playerName) => {
-  const roomRef = ref(rtdb, `rooms/${roomCode}`);
   const playerRef = ref(rtdb, `rooms/${roomCode}/players/${playerId}`);
   
   const playerData = {

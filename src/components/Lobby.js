@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { createRoom, joinRoom } from '../services/firebaseService';
-import { generateRoomCode } from '../utils/gameLogic';
 
 const Lobby = ({ onPlayerJoin, playerId, playerName }) => {
   const [name, setName] = useState(playerName || '');

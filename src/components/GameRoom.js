@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
   createShoe, 
   shuffleDeck, 
-  cutShoe, 
   calculateHandValue,
   isBlackjack,
   isBust,
-  checkPair,
-  checkTrip,
-  checkPerfectPair,
-  checkStraightFlush,
-  CHIP_VALUES,
-  MIN_BET,
-  MAX_BET
+  CHIP_VALUES
 } from '../utils/gameLogic';
 import { 
   subscribeToRoom, 
-  updateGameState, 
   updatePlayerHand,
   updatePlayerChips,
   startGame
@@ -58,7 +50,7 @@ const GameRoom = ({ roomCode, playerId, playerName }) => {
     if (!isDealer) return;
     
     const shoe = shuffleDeck(createShoe());
-    const cutPoint = cutShoe(shoe);
+    const cutPoint = Math.floor(Math.random() * (shoe.length * 0.2)) + Math.floor(shoe.length * 0.6);
     const cutShoe = shoe.slice(cutPoint);
     
     await startGame(roomCode, cutShoe);
