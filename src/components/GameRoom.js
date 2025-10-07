@@ -212,35 +212,49 @@ const GameRoom = ({ roomCode, playerId, playerName }) => {
         />
       </div>
 
-      <div className="betting-panel">
-        <div className="chip-selector">
-          {Object.entries(CHIP_VALUES).map(([label, value]) => (
-            <Chip
-              key={value}
-              value={value}
-              label={label}
-              selected={selectedChip === value}
-              onClick={() => setSelectedChip(value)}
-            />
-          ))}
+      {isDealer && (
+        <div className="dealer-panel">
+          <h3>Dealer Controls</h3>
+          <p>You are the dealer. Manage the game flow and deal cards to players.</p>
+          <div className="dealer-info">
+            <p>Room Code: {roomCode}</p>
+            <p>Players: {roomData?.players ? Object.keys(roomData.players).length : 0}</p>
+            <p>Game State: {roomData?.gameState || 'waiting'}</p>
+          </div>
         </div>
+      )}
 
-        <div className="betting-actions">
-          <button 
-            className="bet-btn"
-            onClick={() => handleBet(0, selectedChip)}
-            disabled={currentPlayer.chips < selectedChip}
-          >
-            Bet {selectedChip.toLocaleString()} VND
-          </button>
+      {!isDealer && (
+        <div className="betting-panel">
+          <div className="chip-selector">
+            {Object.entries(CHIP_VALUES).map(([label, value]) => (
+              <Chip
+                key={value}
+                value={value}
+                label={label}
+                selected={selectedChip === value}
+                onClick={() => setSelectedChip(value)}
+              />
+            ))}
+          </div>
+
+          <div className="betting-actions">
+            <button 
+              className="bet-btn"
+              onClick={() => handleBet(0, selectedChip)}
+              disabled={currentPlayer.chips < selectedChip}
+            >
+              Bet {selectedChip.toLocaleString()} VND
+            </button>
+          </div>
+
+          <SideBetPanel
+            sideBets={sideBets}
+            onSideBet={handleSideBet}
+            playerChips={currentPlayer.chips}
+          />
         </div>
-
-        <SideBetPanel
-          sideBets={sideBets}
-          onSideBet={handleSideBet}
-          playerChips={currentPlayer.chips}
-        />
-      </div>
+      )}
     </div>
   );
 };

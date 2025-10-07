@@ -705,6 +705,41 @@ body {
   margin-top: 20px;
 }
 
+/* Dealer Panel Styles */
+.dealer-panel {
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #ffd700;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.dealer-panel h3 {
+  color: #ffd700;
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.dealer-panel p {
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.dealer-info {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.dealer-info p {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
 .game-status {
   display: flex;
   justify-content: space-between;
