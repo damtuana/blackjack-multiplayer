@@ -33,10 +33,15 @@ const GameRoom = ({ roomCode, playerId, playerName }) => {
   useEffect(() => {
     const unsubscribe = subscribeToRoom(roomCode, (snapshot) => {
       const data = snapshot.val();
+      console.log('Room data received:', data);
       setRoomData(data);
       
       if (data && data.players && data.players[playerId]) {
+        console.log('Player data found:', data.players[playerId]);
         setCurrentPlayer(data.players[playerId]);
+      } else {
+        console.log('Player not found in room data. PlayerId:', playerId);
+        console.log('Available players:', data?.players ? Object.keys(data.players) : 'No players');
       }
     });
 
@@ -128,6 +133,10 @@ const GameRoom = ({ roomCode, playerId, playerName }) => {
       <div className="loading">
         <div className="spinner"></div>
         <p>Loading game...</p>
+        <p>Room Code: {roomCode}</p>
+        <p>Player ID: {playerId}</p>
+        <p>Room Data: {roomData ? 'Loaded' : 'Not loaded'}</p>
+        <p>Current Player: {currentPlayer ? 'Found' : 'Not found'}</p>
       </div>
     );
   }

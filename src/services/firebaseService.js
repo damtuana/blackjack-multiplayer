@@ -20,7 +20,17 @@ export const createRoom = async (dealerId, dealerName) => {
       id: dealerId,
       name: dealerName
     },
-    players: {},
+    players: {
+      [dealerId]: {
+        id: dealerId,
+        name: dealerName,
+        chips: 100000,
+        hands: {},
+        isReady: false,
+        isDealer: true,
+        joinedAt: serverTimestamp()
+      }
+    },
     gameState: 'waiting',
     shoe: null,
     currentHand: null,
